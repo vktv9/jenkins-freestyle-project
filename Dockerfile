@@ -1,14 +1,8 @@
-# Use Python 3 as the base image
-FROM python:3
+# Use an official Nginx image
+FROM nginx:alpine
 
-# Set the working directory inside the container
-WORKDIR /html
+# Copy all files to Nginx's default HTML directory
+COPY . /usr/share/nginx/html
 
-# Copy all files from the current directory to the container
-COPY . .
-
-# Expose port 3000 to access the server
-EXPOSE 3000
-
-# Start a simple HTTP server using Python 3
-CMD ["python", "-m", "http.server", "3000"]
+# Expose port 80 for external access
+EXPOSE 80
